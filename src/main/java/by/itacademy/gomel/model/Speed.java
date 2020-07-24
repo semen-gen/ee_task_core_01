@@ -1,7 +1,6 @@
 package by.itacademy.gomel.model;
 
 import java.util.Locale;
-
 import static by.itacademy.gomel.model.Unit.*;
 
 public class Speed {

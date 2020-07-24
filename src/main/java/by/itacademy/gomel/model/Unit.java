@@ -1,22 +1,27 @@
 package by.itacademy.gomel.model;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 public enum Unit {
-    MS("ms"),
-    KMH("kmh"),
-    MPH("mph"),
-    KN("kn");
+    MS("ms", 4),
+    KMH("kmh", 1),
+    MPH("mph", 2),
+    KN("kn", 3);
 
     private final String VAL;
+    private final int SORT;
 
-    Unit(String unit) {
+    Unit(String unit, int sort) {
         VAL = unit;
+        SORT = sort;
     }
 
     public String getVAL() {
         return VAL;
+    }
+
+    public int getSORT() {
+        return SORT;
     }
 
     public static Unit getByValue(String unit) {

@@ -1,11 +1,11 @@
 package by.itacademy.gomel;
 
+import by.itacademy.gomel.comporators.SpeedASC;
+import by.itacademy.gomel.comporators.SpeedUnitAndValueDESC;
 import by.itacademy.gomel.model.Speed;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class App {
     private static Scanner scanner = new Scanner(System.in);
@@ -14,10 +14,30 @@ public class App {
     public static void main(String[] args) {
         getFileCollection();
         printCollectionInMS();
+        printSortCollection(new SpeedASC());
+        printIsInCollectionValue(2.0, "kmh");
+        printSortCollection(new SpeedUnitAndValueDESC());
+    }
+
+    private static void printIsInCollectionValue(double value, String unit) {
+        System.out.println(collection.stream().anyMatch(s -> s.getValue() == value && s.getUnit().equals(unit)) ? "yes" : "no");
+        System.out.println();
+    }
+
+    private static void printSortCollection(Comparator<Speed> comparator) {
+        collection.sort(comparator);
+        printCollection();
+    }
+
+    private static void printCollection() {
+        for (Speed item : collection) {
+            System.out.println(item);
+        }
+        System.out.println();
     }
 
     private static void printCollectionInMS() {
-        for(Speed item: collection){
+        for (Speed item : collection) {
             System.out.println(item + " = " + item.InMS());
         }
         System.out.println();
