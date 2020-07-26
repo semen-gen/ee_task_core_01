@@ -14,7 +14,7 @@ public class Service {
   protected File file;
   private List<Speed> collection;
 
-  public Service(String fileName) {
+  public Service(String fileName) throws IOException {
     file = new File("src/main/resources/files/" + fileName);
     collection = getFileCollection();
   }
@@ -45,15 +45,13 @@ public class Service {
     System.out.println();
   }
 
-  public List<Speed> getFileCollection() {
+  public List<Speed> getFileCollection() throws IOException {
     List<Speed> collection = new ArrayList<>();
-    try {
-      Files.lines(file.toPath())
-          .map(l -> l.split("\\s+", 2))
-          .forEach(arr -> collection.add(new Speed(new Double(arr[0]), arr[1])));
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+
+    Files.lines(file.toPath())
+        .map(l -> l.split("\\s+", 2))
+        .forEach(arr -> collection.add(new Speed(new Double(arr[0]), arr[1])));
+
     return collection;
   }
 }
